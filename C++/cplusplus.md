@@ -507,6 +507,13 @@ eg.
     delete p; //Free memory of p (The address still remains)
 ```
 
+##### Note
+* Anything in dyanmic memory is accessed using pointers
+  eg.
+    `(*node).data = data;`
+    //or
+    `node->data = data`
+
 ### Stack
 
 ##### Declaration
