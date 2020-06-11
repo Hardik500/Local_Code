@@ -71,7 +71,7 @@ void first()
 
     int doA = x - a, doB = y - b, doC = z - c;
     int moA = x / a, moB = y / b, moC = z / c;
-    int countS = 999999999, countM = 999999999, count = 0;
+    int countS = 4, countM = 4, count = 0;
     bool found = false;
 
     int smallestOfNos = smallest(doA, doB, doC);

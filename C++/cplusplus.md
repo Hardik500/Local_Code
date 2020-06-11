@@ -196,7 +196,7 @@ S.insert(-11);
 //Order; {-11, 1}
 ```
 
-##### Check for existig element
+##### Check for existing element
 
 ```
 auto it = S.find(-1);
@@ -215,6 +215,12 @@ else{
 set<pair <int, int> > S;
 
 S.insert({2,3});
+S.inserrt(make_pair(2,3))
+
+//Print it using
+for(auto const &x:S) {
+    cout<<x.first<<"\n";
+}
 
 //Comparison b/w pairs
 
@@ -763,6 +769,14 @@ printf("%.9f\n", x); // 9 decimal places
 
 ```
 abs(a-b) < 1e-9
+```
+
+##### Sort a vector of pairs (by calculating their differences)
+
+```
+auto comp = [](vector<int> &a, vector<int> &b) {
+    return (a[0] - a[1]) < (b[0] - b[1]);
+};
 ```
 
 ##### Arithmatic Progression
