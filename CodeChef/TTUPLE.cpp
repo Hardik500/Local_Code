@@ -2,67 +2,6 @@
 
 using namespace std;
 
-int smallest(int x, int y, int z)
-{
-    int minimum = 0;
-    if (x != 0)
-    {
-        if (y != 0)
-        {
-            if (z != 0)
-            {
-                if (z <= x and z <= y)
-                {
-                    return z;
-                }
-            }
-            else
-            {
-                if (x <= y)
-                {
-                    return x;
-                }
-                else
-                {
-                    return y;
-                }
-            }
-
-            if (y <= x and y <= z)
-            {
-                return y;
-            }
-        }
-        else
-        {
-            if (x <= z)
-            {
-                return x;
-            }
-            else
-            {
-                return z;
-            }
-        }
-        if (x <= y and x <= z)
-        {
-            return x;
-        }
-    }
-    else
-    {
-        if (y <= z)
-        {
-            return y;
-        }
-        else
-        {
-            return z;
-        }
-    }
-    return 0;
-}
-
 void first()
 {
     int a, b, c, x, y, z;
@@ -70,118 +9,76 @@ void first()
     cin >> x >> y >> z;
 
     int doA = x - a, doB = y - b, doC = z - c;
-    int moA = x / a, moB = y / b, moC = z / c;
-    int countS = 4, countM = 4, count = 0;
-    bool found = false;
+    int moA, moB, moC;
 
-    int smallestOfNos = smallest(doA, doB, doC);
-
-    if (moA == moB and moB == moC and moA == moC and a * moA == x and b * moB == y and c * moC == z)
+    if (a != 0)
     {
-        countM = 1;
-        found = true;
+        moA = x / a;
     }
     else
     {
-        if (moA == moB)
-        {
-            if (a * moA == x and b * moB == y)
-            {
-                if (c == z)
-                {
-                    countM = 1;
-                    found = true;
-                }
-                else
-                {
-                    countM = 2;
-                    found = true;
-                }
-            }
-        }
-        else if (moA == moC)
-        {
-            if (a * moA == x and c * moC == z)
-            {
-                if (c == z)
-                {
-                    countM = 1;
-                    found = true;
-                }
-                else
-                {
-                    countM = 2;
-                    found = true;
-                }
-            }
-        }
-        else if (moB == moC)
-        {
-            if (b * moB == y and c * moC == z)
-            {
-                if (a == x)
-                {
-                    countM = 1;
-                    found = true;
-                }
-                else
-                {
-                    countM = 2;
-                    found = true;
-                }
-            }
-        }
+        moA = 0;
     }
 
-    if (doA == doB and doB == doC and doA == doC)
+    if (b != 0)
     {
-        countS = 1;
-        found = true;
+        moB = y / b;
     }
     else
     {
-        if (a < x)
-        {
-            a += smallestOfNos;
-        }
-        if (b < y)
-        {
-            b += smallestOfNos;
-        }
-        if (c < z)
-        {
-            c += smallestOfNos;
-        }
-
-        if (a == x and b == y and c == z)
-        {
-            countS = 1;
-            found = true;
-        }
-        else if (a == x and b == y)
-        {
-            countS = 2;
-            found = true;
-        }
-        else if (a == x and c == z)
-        {
-            countS = 2;
-            found = true;
-        }
-        else if (b == y and c == z)
-        {
-            countS = 2;
-            found = true;
-        }
+        moB = 0;
     }
 
-    if (countS < countM)
+    if (c != 0)
     {
-        count = countS;
+        moC = z / c;
     }
     else
     {
-        count = countM;
+        moC = 0;
+    }
+
+    int count = 0;
+
+    if ((doA == doB and doB == doC and doA == doC) or (moA * a == x and moB * b == y and moC * c == z))
+    {
+        count = 1;
+    }
+    else if ((doA == 0 and doB == doC) or (doB == 0 and doA == doC) or (doC == 0 and doA == doC))
+    {
+        count = 1;
+    }
+    else if (doA == doB)
+    {
+        count = 2;
+    }
+    else if (doA == doC)
+    {
+        count = 2;
+    }
+    else if (doC == doB)
+    {
+        count = 2;
+    }
+    else if (doA == 0 or doB == 0 or doC == 0)
+    {
+        count = 2;
+    }
+    else if (moA * a == x and moB * b == y)
+    {
+        count = 2;
+    }
+    else if (moC * c == z and moB * b == y)
+    {
+        count = 2;
+    }
+    else if (moA * a == x and moC * c == z)
+    {
+        count = 2;
+    }
+    else
+    {
+        count = 3;
     }
 
     if (count > 3)
