@@ -4,8 +4,12 @@ using namespace std;
 
 int main()
 {
-    vector<vector<int>> people = {{7, 0}, {4, 4}, {5, 2}, {7, 1}, {5, 0}, {6, 1}};
-    vector<vector<int>> new_people = {{0, 0}, {0, 0}, {0, 0}, {0, 0}, {0, 0}, {0, 0}};
+    vector<vector<int>> people = {{8,2},{4,2},{4,5},{2,0},{7,2},{1,4},{9,1},{3,1},{9,0},{1,0}};
+    vector<vector<int>> new_people = {};
+
+    for(auto x: people){
+        new_people.push_back({-1,-1});
+    }
 
     auto comp = [](vector<int> &a, vector<int> &b) {
         if (a[0] == b[0])
@@ -32,7 +36,7 @@ int main()
         {
             while (filled)
             {
-                if (new_people[j][0] == 0)
+                if (new_people[j][0] == -1)
                 {
                     new_people[j] = people[i];
                     filled = false;
@@ -55,7 +59,7 @@ int main()
                     filledBlock -= 1;
                 }
 
-                if (new_people[j][0] == 0)
+                if (new_people[j][0] == -1)
                 {
                     emptyBlock += 1;
                 }
@@ -63,22 +67,50 @@ int main()
                 {
                     filledBlock += 1;
                 }
-                //FIXME
                 if ((emptyBlock + count) == people[i][1])
                 {
-                    if (new_people[emptyBlock + count][0] == 0)
+                    if (filledBlock > 0)
                     {
-                        new_people[emptyBlock + count] = people[i];
-                        filled = false;
-                    }
-                    else{
-                        while(j<people.size()){
-                            if(new_people[j][0] == 0){
-                                new_people[j] = people[i];
-                                filled = false;
-                                break;
+                        if (new_people[emptyBlock + count + filledBlock][0] == -1)
+                        {
+                            new_people[emptyBlock + count + filledBlock] = people[i];
+                            filled = false;
+                        }
+                        else
+                        {
+                            j = filledBlock + emptyBlock + count;
+                            while (j < people.size())
+                            {
+                                if (new_people[j][0] == -1)
+                                {
+                                    new_people[j] = people[i];
+                                    filled = false;
+                                    break;
+                                }
+                                j += 1;
                             }
-                            j += 1;
+                        }
+                    }
+                    else
+                    {
+                        if (new_people[emptyBlock + count][0] == -1)
+                        {
+                            new_people[emptyBlock + count] = people[i];
+                            filled = false;
+                        }
+                        else
+                        {
+                            j = emptyBlock + count;
+                            while (j < people.size())
+                            {
+                                if (new_people[j][0] == -1)
+                                {
+                                    new_people[j] = people[i];
+                                    filled = false;
+                                    break;
+                                }
+                                j += 1;
+                            }
                         }
                     }
                 }
@@ -87,8 +119,19 @@ int main()
         }
     }
 
-    for (auto x : new_people)
+    cout << "[";
+
+    for (int i = 0;i<new_people.size();i++)
     {
-        cout << x[0] << "\n";
+        if (i == new_people.size() - 1)
+        {
+            cout << "[" << new_people[i][0] << "," << new_people[i][1] << "]";
+        }
+        else
+        {
+            cout << "[" << new_people[i][0] << "," << new_people[i][1] << "],";
+        }
     }
+
+    cout << "]\n";
 }
