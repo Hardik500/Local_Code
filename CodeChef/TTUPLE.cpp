@@ -17,11 +17,11 @@ void first()
     int ddyz = z - y;
     bool doabxy = false, dobcyz = false;
 
-    if (ddAB / ddxy == 0)
+    if (ddxy != 0 and ddAB % ddxy == 0)
     {
         doabxy = true;
     }
-    if (ddBC / ddyz == 0)
+    if (ddyz != 0 and ddBC % ddyz == 0)
     {
         dobcyz = true;
     }
@@ -63,6 +63,9 @@ void first()
     }
     else if ((doA == 0 and doB == doC) or (doB == 0 and doA == doC) or (doC == 0 and doA == doC))
     {
+        count = 1;
+    }
+    else if((doA == 0 and doB == 0) or (doC == 0 and doB == 0) or (doA == 0 and doC == 0)){
         count = 1;
     }
     else if (doA == doB)
