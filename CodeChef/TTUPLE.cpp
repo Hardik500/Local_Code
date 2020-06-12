@@ -11,6 +11,23 @@ void first()
     int doA = x - a, doB = y - b, doC = z - c;
     int moA, moB, moC;
 
+    int ddAB = b - a;
+    int ddBC = c - b;
+    int ddxy = y - x;
+    int ddyz = z - y;
+    bool doabxy = false, dobcyz = false;
+
+    if (ddAB / ddxy == 0)
+    {
+        doabxy = true;
+    }
+    if (ddBC / ddyz == 0)
+    {
+        dobcyz = true;
+    }
+
+    bool found = false;
+
     if (a != 0)
     {
         moA = x / a;
@@ -40,7 +57,7 @@ void first()
 
     int count = 0;
 
-    if ((doA == doB and doB == doC and doA == doC) or (moA * a == x and moB * b == y and moC * c == z))
+    if ((doA == doB and doB == doC and doA == doC) or ((moA == moB and moB == moC and moC == moA) and (moA * a == x and moB * b == y and moC * c == z)))
     {
         count = 1;
     }
@@ -64,17 +81,277 @@ void first()
     {
         count = 2;
     }
-    else if (moA * a == x and moB * b == y)
+    else if ((moA == moB) and (moA * a == x and moB * b == y))
     {
         count = 2;
     }
-    else if (moC * c == z and moB * b == y)
+    else if ((moB == moC) and (moC * c == z and moB * b == y))
     {
         count = 2;
     }
-    else if (moA * a == x and moC * c == z)
+    else if ((moA == moC) and (moA * a == x and moC * c == z))
     {
         count = 2;
+    }
+    else if (doabxy and dobcyz)
+    {
+        count = 2;
+    }
+    else if (moA == moB)
+    {
+        a *= moA;
+        b *= moB;
+
+        if (b != y and a == x)
+        {
+            doB = y - b;
+            doC = z - c;
+
+            if (doB == doC)
+            {
+                count = 2;
+            }
+        }
+        else if (b == y and a != x)
+        {
+            doA = x - a;
+            doC = z - c;
+
+            if (doA == doC)
+            {
+                count = 2;
+            }
+        }
+        else if (b == y and a == x)
+        {
+            if (c == z)
+            {
+                count = 1;
+            }
+            else
+            {
+                count = 2;
+            }
+        }
+        else
+        {
+            doB = y - b;
+            doC = z - c;
+            doA = x - a;
+
+            if (doA == 0)
+            {
+                if (doB == doC)
+                {
+                    count = 2;
+                }
+                else
+                {
+                    count = 3;
+                }
+            }
+            else if (doB == 0)
+            {
+                if (doA == doC)
+                {
+                    count = 2;
+                }
+                else
+                {
+                    count = 3;
+                }
+            }
+            else if (doC == 0)
+            {
+                if (doA == doB)
+                {
+                    count = 2;
+                }
+                else
+                {
+                    count = 3;
+                }
+            }
+            else if (doB == doA == doC)
+            {
+                count = 2;
+            }
+            else
+            {
+                count = 3;
+            }
+        }
+    }
+    else if (moB == moC)
+    {
+
+        c *= moC;
+        b *= moB;
+
+        if (b != y and c == z)
+        {
+            doB = y - b;
+            doA = x - a;
+
+            if (doB == doA)
+            {
+                count = 2;
+            }
+        }
+        else if (b == y and c != z)
+        {
+            doA = x - a;
+            doC = z - c;
+
+            if (doA == doC)
+            {
+                count = 2;
+            }
+        }
+        else if (b == y and c == z)
+        {
+            if (a == x)
+            {
+                count = 1;
+            }
+            else
+            {
+                count = 2;
+            }
+        }
+        else
+        {
+            doB = y - b;
+            doC = z - c;
+            doA = x - a;
+
+            if (doA == 0)
+            {
+                if (doB == doC)
+                {
+                    count = 2;
+                }
+                else
+                {
+                    count = 3;
+                }
+            }
+            else if (doB == 0)
+            {
+                if (doA == doC)
+                {
+                    count = 2;
+                }
+                else
+                {
+                    count = 3;
+                }
+            }
+            else if (doC == 0)
+            {
+                if (doA == doB)
+                {
+                    count = 2;
+                }
+                else
+                {
+                    count = 3;
+                }
+            }
+            else if (doB == doA == doC)
+            {
+                count = 2;
+            }
+            else
+            {
+                count = 3;
+            }
+        }
+    }
+    else if (moC == moA)
+    {
+        c *= moC;
+        a *= moA;
+
+        if (a != x and c == z)
+        {
+            doA = x - a;
+            doB = y - b;
+
+            if (doB == doA)
+            {
+                count = 2;
+            }
+        }
+        else if (a == x and c != z)
+        {
+            doB = y - b;
+            doC = z - c;
+
+            if (doB == doC)
+            {
+                count = 2;
+            }
+        }
+        else if (a == x and c == z)
+        {
+            if (b == y)
+            {
+                count = 1;
+            }
+            else
+            {
+                count = 2;
+            }
+        }
+        else
+        {
+            doB = y - b;
+            doC = z - c;
+            doA = x - a;
+
+            if (doA == 0)
+            {
+                if (doB == doC)
+                {
+                    count = 2;
+                }
+                else
+                {
+                    count = 3;
+                }
+            }
+            else if (doB == 0)
+            {
+                if (doA == doC)
+                {
+                    count = 2;
+                }
+                else
+                {
+                    count = 3;
+                }
+            }
+            else if (doC == 0)
+            {
+                if (doA == doB)
+                {
+                    count = 2;
+                }
+                else
+                {
+                    count = 3;
+                }
+            }
+            else if (doB == doA == doC)
+            {
+                count = 2;
+            }
+            else
+            {
+                count = 3;
+            }
+        }
     }
     else
     {
