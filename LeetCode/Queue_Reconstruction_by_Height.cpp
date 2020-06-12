@@ -135,3 +135,79 @@ int main()
 
     cout << "]\n";
 }
+
+//OR (best soln)
+
+/*
+
+bool pro(const pair<int,int> & x, const pair<int,int> & y)
+{
+    if(x.first!=y.first)
+    {
+        return x.first<y.first;
+    }
+    else
+    {
+        return x.second>y.second;
+    }
+}
+
+class Solution {
+public:
+    vector<vector<int>> reconstructQueue(vector<vector<int>>& p) {
+     
+        vector<pair<int,int>> a;
+        int n=p.size();
+        vector<vector<int>> ans(n);
+
+        if(n==0)
+        {
+            return ans;
+        }
+        int i,x,y;
+        
+        for(i=0;i<n;i++)
+        {
+            x=p[i][0];
+            y=p[i][1];
+            a.push_back({x,y});
+        }
+        
+        sort(a.begin(),a.end(),pro);
+        
+        int an[n],j;
+        
+        
+        for(i=0;i<n;i++)
+        {
+            an[i]=-1;
+        }
+        int count=0;
+        for(i=0;i<n;i++)
+        {
+            cout<<a[i].first<<" "<<a[i].second<<"     "; 
+            x=a[i].second;
+            count=0;
+            for(j=0;j<n;j++)
+            {
+                if(an[j]==-1)
+                {
+                    count++;
+                }
+                if(count>x)
+                {
+                    an[j]=i;
+                    ans[j].push_back(a[i].first);
+                    ans[j].push_back(a[i].second);
+                    break;
+                }
+            }
+        }
+        
+        
+       return ans;
+        
+    }
+};
+
+*/
