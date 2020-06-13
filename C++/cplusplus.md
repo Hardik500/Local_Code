@@ -208,6 +208,41 @@ otherwise
 8. `void push_front( const Object & x )`: adds x to the front of the list.
 9. `void pop_front( )`: removes the object at the front of the list
 
+### Iterators
+
+##### Defination
+It represents the position of an item
+
+##### Functions
+1. `iterator begin( )`: returns an appropriate iterator representing the first item in the container.
+2. `iterator end( )`: returns an appropriate iterator representing the endmarker in the container (i.e., the position after the last item in the container).
+3. `iterator insert( iterator pos, const Object & x )`: adds x into the list, prior to the position given by the iterator pos. This is a constant-time operation for list, but not for vector. The return value is an iterator representing the position of the inserted item.
+4. `iterator erase( iterator pos )`: removes the object at the position given by the iterator. This is a constant-time operation for list, but not for vector. The return value is the position of the element that followed pos prior to the call. This operation invalidates pos, which is now stale, since the container item it was viewing has been removed.
+5. `iterator erase( iterator start, iterator end )`: removes all items beginning at position start, up to, but not including end. Observe that the entire list can be erased by
+the call c.erase( c.begin( ), c.end( ) ).
+
+
+##### Methods
+
+* itr++ and ++itr: advances the iterator itr to the next location. Both the prefix and postfix forms are allowable.
+* *itr: returns a reference to the object stored at iterator itr’s location. The reference returned may or may not be modifiable (we discuss these details shortly).
+* itr1==itr2: returns true if iterators itr1 and itr2 refer to the same location and false otherwise.
+* itr1!=itr2: returns true if iterators itr1 and itr2 refer to a different location and false otherwise
+
+##### Tricks
+
+* For loop using an iterator
+```
+for( vector<int>::iterator itr = v.begin( ); itr != v.end( ); ++itr )
+    cout << itr.??? << endl;
+```
+OR
+```
+vector<int>::iterator itr = v.begin( );
+while( itr !=v.end( ) )
+    cout << *itr++ << endl;
+```
+
 ### Set
 
 ##### Declaration
