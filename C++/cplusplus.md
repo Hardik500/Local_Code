@@ -243,6 +243,14 @@ while( itr !=v.end( ) )
     cout << *itr++ << endl;
 ```
 
+##### Notes
+
+* The result of *itr is not just the value of the item that the iterator is viewing but also the item itself.
+ ```
+ while( itr != c.end( ) )
+    *itr++ = newValue;
+ ```
+
 ### Set
 
 ##### Declaration
