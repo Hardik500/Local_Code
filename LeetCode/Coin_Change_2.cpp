@@ -73,9 +73,6 @@ int main()
     dp[0] = 1;
     for (int i = 0; i < coins.size(); i++){
         for (int j = coins[i]; j <= amount; j++){
-            int d = dp[j];
-            int e = coins[i];
-            int f = dp[j - coins[i]];
             dp[j] = dp[j - coins[i]] + dp[j];
         }
     }
