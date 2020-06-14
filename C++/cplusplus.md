@@ -91,44 +91,44 @@ Structures in C++ can contain two types of members:
 ###### Declaration
 
 ```
-// A variable declaration with structure declaration. 
-struct Point 
-{ 
-   int x, y; 
-} p1;  // The variable p1 is declared with 'Point' 
-  
-  
-// A variable declaration like basic data types 
-struct Point 
-{ 
-   int x, y; 
-};  
-  
-int main() 
-{ 
-   struct Point p1;  // The variable p1 is declared like a normal variable 
+// A variable declaration with structure declaration.
+struct Point
+{
+   int x, y;
+} p1;  // The variable p1 is declared with 'Point'
+
+
+// A variable declaration like basic data types
+struct Point
+{
+   int x, y;
+};
+
+int main()
+{
+   struct Point p1;  // The variable p1 is declared like a normal variable
 }
 ```
 
 ##### Accessing
 
 ```
-#include <iostream> 
-using namespace std; 
-  
-struct Point { 
-    int x, y; 
-}; 
-  
-int main() 
-{ 
-    struct Point p1 = { 0, 1 }; 
-  
-    // Accessing members of point p1 
-    p1.x = 20; 
-    cout << "x = " << p1.x << ", y = " << p1.y; 
-  
-    return 0; 
+#include <iostream>
+using namespace std;
+
+struct Point {
+    int x, y;
+};
+
+int main()
+{
+    struct Point p1 = { 0, 1 };
+
+    // Accessing members of point p1
+    p1.x = 20;
+    cout << "x = " << p1.x << ", y = " << p1.y;
+
+    return 0;
 }
 ```
 
@@ -137,23 +137,30 @@ int main()
 Like primitive types, we can have pointer to a structure. If we have a pointer to structure, members are accessed using arrow ( -> ) operator instead of the dot (.) operator.
 
 ```
-struct Point { 
-    int x, y; 
-}; 
-  
-int main() 
-{ 
-    struct Point p1 = { 1, 2 }; 
-  
-    // p2 is a pointer to structure p1 
-    struct Point* p2 = &p1; 
-  
-    // Accessing structure members using 
-    // structure pointer 
-    cout << p2->x << " " << p2->y; 
-    return 0; 
+struct Point {
+    int x, y;
+};
+
+int main()
+{
+    struct Point p1 = { 1, 2 };
+
+    // p2 is a pointer to structure p1
+    struct Point* p2 = &p1;
+
+    // Accessing structure members using
+    // structure pointer
+    cout << p2->x << " " << p2->y;
+    return 0;
 }
 ```
+
+### Abstract Data Types (ADT)
+
+##### Defintation
+
+An abstract data type (ADT) is a set of objects together with a set of operations. Abstract data types are mathematical abstractions; nowhere in an ADT’s definition is there any mention of how the set of operations is implemented. Objects such as lists, sets, and graphs, along with their operations, can be viewed as ADTs, just as integers, reals, and booleans are data types. Integers, reals, and booleans have operations associated with them, and so do ADTs. For the set ADT, we might have such operations as add, remove, size, and contains.
+Alternatively, we might only want the two operations union and find, which would define a different ADT on the set
 
 ### Vectors
 
@@ -183,6 +190,71 @@ vector<int> squares {1, 2,3,4,55}; //Shorthand property
 4. `vector.front()` : Returns a reference to the first element in the vector.
 5. `vector.end()` : Returns an iterator referring to the past-the-end element in the vector container.
 6. `vector.begin()` : Returns an iterator pointing to the first element in the vector.
+
+7. `vector.clear()` : removes all elements from the container
+8. `empty()` : returns true if the container contains no elements, and false
+otherwise
+9. `int capacity( ) const` :  returns the internal capacity of the vector
+10. `void reserve( int newCapacity )`: sets the new capacity. If a good estimate is available, it can be used to avoid expansion of the vector
+11. `Object & at( int idx )`: returns the object at index idx in the vector, with boundschecking (an accessor that returns a constant reference is also provided)
+12. `Object & operator[] ( int idx )`: returns the object at index idx in the vector, with no bounds-checking (an accessor that returns a constant reference is also provided).
+
+### List (Linked List)
+
+##### Functions
+
+1. `int size( ) const`: returns the number of elements in the container.
+2. `void clear( )`: removes all elements from the container.
+3. `bool empty( ) const`: returns true if the container contains no elements, and false otherwise.
+4. `void push_back( const Object & x )`: adds x to the end of the list.
+5. `void pop_back( )`: removes the object at the end of the list.
+6. `const Object & back( ) const`: returns the object at the end of the list (a mutator that returns a reference is also provided).
+7. `const Object & front( ) const`: returns the object at the front of the list (a mutator that returns a reference is also provided).
+8. `void push_front( const Object & x )`: adds x to the front of the list.
+9. `void pop_front( )`: removes the object at the front of the list
+
+### Iterators
+
+##### Defination
+It represents the position of an item
+
+##### Functions
+1. `iterator begin( )`: returns an appropriate iterator representing the first item in the container.
+2. `iterator end( )`: returns an appropriate iterator representing the endmarker in the container (i.e., the position after the last item in the container).
+3. `iterator insert( iterator pos, const Object & x )`: adds x into the list, prior to the position given by the iterator pos. This is a constant-time operation for list, but not for vector. The return value is an iterator representing the position of the inserted item.
+4. `iterator erase( iterator pos )`: removes the object at the position given by the iterator. This is a constant-time operation for list, but not for vector. The return value is the position of the element that followed pos prior to the call. This operation invalidates pos, which is now stale, since the container item it was viewing has been removed.
+5. `iterator erase( iterator start, iterator end )`: removes all items beginning at position start, up to, but not including end. Observe that the entire list can be erased by
+the call c.erase( c.begin( ), c.end( ) ).
+
+
+##### Methods
+
+* itr++ and ++itr: advances the iterator itr to the next location. Both the prefix and postfix forms are allowable.
+* *itr: returns a reference to the object stored at iterator itr’s location. The reference returned may or may not be modifiable (we discuss these details shortly).
+* itr1==itr2: returns true if iterators itr1 and itr2 refer to the same location and false otherwise.
+* itr1!=itr2: returns true if iterators itr1 and itr2 refer to a different location and false otherwise
+
+##### Tricks
+
+* For loop using an iterator
+```
+for( vector<int>::iterator itr = v.begin( ); itr != v.end( ); ++itr )
+    cout << itr.??? << endl;
+```
+OR
+```
+vector<int>::iterator itr = v.begin( );
+while( itr !=v.end( ) )
+    cout << *itr++ << endl;
+```
+
+##### Notes
+
+* The result of *itr is not just the value of the item that the iterator is viewing but also the item itself.
+ ```
+ while( itr != c.end( ) )
+    *itr++ = newValue;
+ ```
 
 ### Set
 
@@ -510,13 +582,13 @@ IntCell & operator= ( IntCell && rhs ); // Move assignment
 * `new`: For assigning memory in heap (In C it is: `(int*)malloc(sizeof(int)`)
 * `delete`: For freeing memory from heap (In C it is: `free(p)`)
 
-eg. 
+eg.
 ```
     int *p;
     p = new int; //(In the heap assign a memory of size of int and returns the address)
-    
+
     *p = 10; //Since p is an address so to store the value we need to use a pointer
-    
+
     delete p; //Free memory of p (The address still remains)
 ```
 
@@ -538,7 +610,7 @@ rand() % 10 + 1;
 
 ##### Declaration
 ```
-stack <int> s; 
+stack <int> s;
 ```
 
 ##### Operations
@@ -563,33 +635,33 @@ Maps are associative containers that store elements in a mapped fashion. Each el
 
 ##### Insertion
 ```
-// insert elements in random order 
-gquiz1.insert(pair<int, int>(1, 40)); 
-gquiz1.insert(pair<int, int>(2, 30)); 
+// insert elements in random order
+gquiz1.insert(pair<int, int>(1, 40));
+gquiz1.insert(pair<int, int>(2, 30));
 ```
 
 ##### Printing
 ```
-map<int, int>::iterator itr; 
+map<int, int>::iterator itr;
 for (itr = gquiz1.begin(); itr != gquiz1.end(); ++itr) {
-    cout << '\t' << itr->first<< '\t' << itr->second << '\n'; 
-    } 
-    cout << endl; 
+    cout << '\t' << itr->first<< '\t' << itr->second << '\n';
+    }
+    cout << endl;
 ```
 
 ##### Copying
 ```
-// assigning the elements from gquiz1 to gquiz2 
+// assigning the elements from gquiz1 to gquiz2
 map<int, int> gquiz2(gquiz1.begin(), gquiz1.end());
 ```
 
 ##### Removing
 ```
-// remove all elements up to 
+// remove all elements up to
 // element with key=3 in gquiz2
-gquiz2.erase(gquiz2.begin(), gquiz2.find(3)); 
+gquiz2.erase(gquiz2.begin(), gquiz2.find(3));
 
-// remove all elements with key = 4 
+// remove all elements with key = 4
 gquiz2.erase(4);
 ```
 
@@ -759,7 +831,7 @@ freopen("output.txt", "w", stdout);
 ##### For extra long int
 
 32 bit - long int
-64 bit - long long int 
+64 bit - long long int
 80 bit - long double int
 128 bit - \_\_int128_t
 
