@@ -8,6 +8,7 @@
 #include <set> //Set (auto sort nos)
 #include <cmath> //Math functions
 #include <map>  //Maps
+#include <stdlib.h> // srand, rand
 
 #include <bits/stdc++.h> //imp
 
@@ -178,6 +179,10 @@ vector<int> squares {1, 2,3,4,55}; //Shorthand property
 
 1. `vector.size()` : Get the size
 2. `vector.push_back()` : Append the value
+3. `vector.back()` : Returns a reference to the last element in the vector.
+4. `vector.front()` : Returns a reference to the first element in the vector.
+5. `vector.end()` : Returns an iterator referring to the past-the-end element in the vector container.
+6. `vector.begin()` : Returns an iterator pointing to the first element in the vector.
 
 ### Set
 
@@ -521,6 +526,13 @@ eg.
     `(*node).data = data;`
     //or
     `node->data = data`
+
+### Random
+
+##### Generate secret number between 1 and 10 (Inclusive)
+```
+rand() % 10 + 1;
+```
 
 ### Stack
 
