@@ -28,6 +28,7 @@ using namespace std;
 // }
 
 //FIXED (faster) Top-Down
+//FIXME (Still TLE)
 int get_change_dp(vector<int> coins, int amount, int index, vector<vector<int>> &dp)
 {
     if (amount == 0)
@@ -39,7 +40,7 @@ int get_change_dp(vector<int> coins, int amount, int index, vector<vector<int>> 
 
     int result = 0;
 
-    for (int i = index; i < 3; i++)
+    for (int i = index; i < coins.size(); i++)
     {
         if (amount >= coins[i])
         {
