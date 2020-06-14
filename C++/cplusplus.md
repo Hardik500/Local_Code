@@ -190,7 +190,6 @@ vector<int> squares {1, 2,3,4,55}; //Shorthand property
 4. `vector.front()` : Returns a reference to the first element in the vector.
 5. `vector.end()` : Returns an iterator referring to the past-the-end element in the vector container.
 6. `vector.begin()` : Returns an iterator pointing to the first element in the vector.
-
 7. `vector.clear()` : removes all elements from the container
 8. `empty()` : returns true if the container contains no elements, and false
 otherwise
