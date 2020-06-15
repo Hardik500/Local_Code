@@ -408,6 +408,11 @@ for(int i: squares) {
 sort(v.begin(), v.end());
 ```
 
+##### Reverse sort
+```
+sort(v.rbegin(),v.rend());
+```
+
 ##### Sort a vector using a comparator
 
 ```
