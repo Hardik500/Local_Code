@@ -53,6 +53,74 @@ using namespace std;
 //     return dp[amount][index] - 1;
 // }
 
+//FIXED (faster) Top-Down
+//FIXME (Still TLE)
+// map<string, int> hashMap;
+
+// int get_change(int amount, vector<int> coins,int index){
+//     if(amount == 0){
+//         return 1;
+//     }
+//     else if(amount < 0){
+//         return 0;
+//     }
+//     else if(index == coins.size() and amount > 0){
+//         return 0;
+//     }
+
+//     string key = to_string(amount) + "$" + to_string(index);
+
+//     if(hashMap.find(key) == hashMap.end()){
+//         hashMap.insert(pair<string, int>(key ,get_change(amount - coins[index], coins, index) + get_change(amount, coins, index + 1)));
+//     }
+//     else{
+//         return hashMap.find(key)->second;
+//     }
+//     return hashMap.find(key)->second;
+// }
+
+//Bottom up 2-D (ACCEPTED)
+int get_change(int amount, vector<int> coins)
+{
+    int dp[coins.size() + 1][amount + 1];
+
+    for (int i = 0; i <= coins.size(); i++)
+    {
+        for (int j = 0; j <= amount; j++)
+        {
+            dp[i][j] = 0;
+        }
+    }
+
+    dp[0][0] = 1; //Number of coins with zero amount and zero coins is 1
+    for (int i = 1; i <= coins.size(); i++)
+    {
+        dp[i][0] = 1;
+
+        for (int j = 1; j <= amount; j++)
+        {
+            dp[i][j] = dp[i - 1][j]; //excluding
+            if (j - coins[i - 1] >= 0) // check if amount  >= to the current i`th coin
+            {
+                dp[i][j] += dp[i][j - coins[i - 1]]; //including
+            }
+        }
+    }
+    return dp[coins.size()][amount];
+}
+
+//Bottom up 1-D
+int get_change(int amount, vector<int> coins){
+    vector<int> dp(amount + 1, 0); // default 0 initialized
+    dp[0] = 1; //if nothing to change not select any coin is one way
+    for (int i = 0; i < coins.size(); i++){
+        for (int j = coins[i]; j <= amount; j++){ // iterate j for all coins[i]
+            dp[j] = dp[j - coins[i]] + dp[j];     // selecting the coins[i - 1] for amount j
+        }
+    }
+    return dp.back();
+}
+
 int main()
 {
     vector<int> coins = {1, 2, 3};
@@ -68,15 +136,14 @@ int main()
 
     // cout<<get_change_dp(coins, amount, 0, dp);
 
-    //Third Solution (Fastest)
-    vector<int> dp(amount + 1, 0);
-    dp[0] = 1;
-    for (int i = 0; i < coins.size(); i++){
-        for (int j = coins[i]; j <= amount; j++){
-            dp[j] = dp[j - coins[i]] + dp[j];
-        }
-    }
-    cout << dp.back();
+    //Third Solution
+    // cout<<get_change(amount, coins, 0);
+
+    //Fourth Solution
+    cout << get_change(amount, coins);
+
+    //Fifth Solution (Fastest)
+    cout<<get_change(amount, coins);
 }
 
 //LINK: for solution explaination
