@@ -8,6 +8,7 @@
 #include <set> //Set (auto sort nos)
 #include <cmath> //Math functions
 #include <map>  //Maps
+#include <stdlib.h> // srand, rand
 
 #include <bits/stdc++.h> //imp
 
@@ -185,7 +186,10 @@ vector<int> squares {1, 2,3,4,55}; //Shorthand property
 
 1. `vector.size()` : Get the size
 2. `vector.push_back()` : Append the value
-
+3. `vector.back()` : Returns a reference to the last element in the vector.
+4. `vector.front()` : Returns a reference to the first element in the vector.
+5. `vector.end()` : Returns an iterator referring to the past-the-end element in the vector container.
+6. `vector.begin()` : Returns an iterator pointing to the first element in the vector.
 7. `vector.clear()` : removes all elements from the container
 8. `empty()` : returns true if the container contains no elements, and false
 otherwise
@@ -336,14 +340,50 @@ auto it = S.upper_bound(x)
 
 ### Map
 
-##### Declartion
+##### Defination
+Maps are associative containers that store elements in a mapped fashion. Each element has a key value and a mapped value. No two mapped values can have same key values.
 
+##### Declaration
 ```
+map<int, int> gquiz1;
+
 map<int, int> A;
 map<char, int> cnts;
 
 A[1] = 100;
 A[12] = 200;
+```
+
+##### Insertion
+```
+// insert elements in random order
+gquiz1.insert(pair<int, int>(1, 40));
+gquiz1.insert(pair<int, int>(2, 30));
+```
+
+##### Printing
+```
+map<int, int>::iterator itr;
+for (itr = gquiz1.begin(); itr != gquiz1.end(); ++itr) {
+    cout << '\t' << itr->first<< '\t' << itr->second << '\n';
+    }
+    cout << endl;
+```
+
+##### Copying
+```
+// assigning the elements from gquiz1 to gquiz2
+map<int, int> gquiz2(gquiz1.begin(), gquiz1.end());
+```
+
+##### Removing
+```
+// remove all elements up to
+// element with key=3 in gquiz2
+gquiz2.erase(gquiz2.begin(), gquiz2.find(3));
+
+// remove all elements with key = 4
+gquiz2.erase(4);
 ```
 
 ##### Find a key
@@ -358,6 +398,7 @@ A.find(key);
 A.delete(key);
 ```
 
+
 ##### Get the count of characters
 
 ```
@@ -369,6 +410,18 @@ for(char y : x){
 
 cout<<cnt['h'];
 ```
+
+##### Functions available
+
+* `begin()` – Returns an iterator to the first element in the map
+* `end()` – Returns an iterator to the theoretical element that follows last element in the map
+* `size()` – Returns the number of elements in the map
+* `max_size()` – Returns the maximum number of elements that the map can hold
+* `empty()` – Returns whether the map is empty
+* `pair insert(keyvalue, mapvalue)` – Adds a new element to the map
+* `erase(iterator position)` – Removes the element at the position pointed by the iterator
+* `erase(const g)` – Removes the key value ‘g’ from the map
+* `clear()` – Removes all the elements from the map
 
 ### Pair
 
@@ -599,6 +652,13 @@ eg.
     //or
     `node->data = data`
 
+### Random
+
+##### Generate secret number between 1 and 10 (Inclusive)
+```
+rand() % 10 + 1;
+```
+
 ### Stack
 
 ##### Declaration
@@ -617,58 +677,6 @@ Swap: `stack1.swap(stack2)`
 
 ##### Difference between stack::emplace() and stack::push() function.
 While push() function inserts a copy of the value or the parameter passed to the function into the container at the top, the emplace() function constructs a new element as the value of the parameter and then adds it to the top of the container.
-
-### Maps
-
-##### Defination
-Maps are associative containers that store elements in a mapped fashion. Each element has a key value and a mapped value. No two mapped values can have same key values.
-
-##### Declaration
-`map<int, int> gquiz1;`
-
-##### Insertion
-```
-// insert elements in random order
-gquiz1.insert(pair<int, int>(1, 40));
-gquiz1.insert(pair<int, int>(2, 30));
-```
-
-##### Printing
-```
-map<int, int>::iterator itr;
-for (itr = gquiz1.begin(); itr != gquiz1.end(); ++itr) {
-    cout << '\t' << itr->first<< '\t' << itr->second << '\n';
-    }
-    cout << endl;
-```
-
-##### Copying
-```
-// assigning the elements from gquiz1 to gquiz2
-map<int, int> gquiz2(gquiz1.begin(), gquiz1.end());
-```
-
-##### Removing
-```
-// remove all elements up to
-// element with key=3 in gquiz2
-gquiz2.erase(gquiz2.begin(), gquiz2.find(3));
-
-// remove all elements with key = 4
-gquiz2.erase(4);
-```
-
-##### Functions available
-
-* `begin()` – Returns an iterator to the first element in the map
-* `end()` – Returns an iterator to the theoretical element that follows last element in the map
-* `size()` – Returns the number of elements in the map
-* `max_size()` – Returns the maximum number of elements that the map can hold
-* `empty()` – Returns whether the map is empty
-* `pair insert(keyvalue, mapvalue)` – Adds a new element to the map
-* `erase(iterator position)` – Removes the element at the position pointed by the iterator
-* `erase(const g)` – Removes the key value ‘g’ from the map
-* `clear()` – Removes all the elements from the map
 
 ### Templates
 
