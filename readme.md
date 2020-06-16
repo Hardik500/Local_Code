@@ -338,6 +338,30 @@ auto it = S.lower_bound(x)
 auto it = S.upper_bound(x)
 ```
 
+##### Set for multiple occurences
+
+```
+multiset<int> s;
+s.insert(5);
+s.insert(5);
+s.insert(5);
+cout << s.count(5) << "\n"; // 3
+```
+
+##### Deleting all occursences in a multiset
+
+```
+s.erase(5);
+cout << s.count(5) << "\n"; // 0
+```
+
+##### Deleting single occurence in a multiset
+
+```
+s.erase(s.find(5));
+cout << s.count(5) << "\n"; // 2
+```
+
 ### Map
 
 ##### Defination
