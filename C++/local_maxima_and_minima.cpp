@@ -11,9 +11,9 @@ int main()
 
     for (int i = 0; i < sizeOfA(arr); i++)
     {
-        if (i == 0 || i == sizeOfA(arr) - 1 || arr[i - 1] < arr[i] and arr[i + 1] < arr[i])
+        if ((arr[i - 1] < arr[i]) != (arr[i] < arr[i + 1]))
         {
-            maxima = max(maxima, arr[i]);
+            maxima = (maxima, arr[i]);
         }
     }
 
