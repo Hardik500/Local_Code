@@ -182,6 +182,39 @@ vector<int> squares = {1, 2,3,4,55}; //Initialize a vector of size 100
 vector<int> squares {1, 2,3,4,55}; //Shorthand property
 ```
 
+##### Sort a vector
+
+```
+sort(v.begin(), v.end());
+```
+
+##### Reverse sort
+```
+sort(v.rbegin(),v.rend());
+```
+
+##### Sort a vector using a comparator
+
+```
+//Reverse sort
+bool f(int x, int y){
+    return x>y;
+}
+
+sort(v.begin(), v.end(), f);
+```
+
+##### Print a vector
+
+```
+vector<int>::iterator it;
+
+for(it = A.begin(); it!=A.end(); it++){
+    cout<<*it;
+}
+
+```
+
 ##### Functions
 
 1. `vector.size()` : Get the size
@@ -362,6 +395,45 @@ s.erase(s.find(5));
 cout << s.count(5) << "\n"; // 2
 ```
 
+### Bitset
+
+##### Defination
+```
+A bitset is an array whose each value is either 0 or 1.
+The benefit of using bitsets is that they require less memory than ordinary arrays, because each element in a bitset only uses one bit of memory. For example, if n bits are stored in an int array, 32n bits of memory will be used, but a corresponding bitset only requires n bits of memory. In addition, the values of a bitset can be efficiently manipulated using bit operators, which makes it possible to optimize algorithms using bit sets.
+```
+
+##### Declaration
+```
+//The following code creates a bitset that contains 10 elements:
+
+bitset<10> s;
+s[1] = 1;
+s[3] = 1;
+s[4] = 1;
+s[7] = 1;
+cout << s[4] << "\n"; // 1
+cout << s[5] << "\n"; // 0
+
+or
+
+bitset<10> s(string("0010011010")); // from right to left
+cout << s[4] << "\n"; // 1
+cout << s[5] << "\n"; // 0
+```
+
+##### Functions
+
+* `s.count()` : Returns number of ones
+
+##### More operations
+
+```
+cout << (a&b) << "\n"; // 0010010000
+cout << (a|b) << "\n"; // 1011111110
+cout << (a^b) << "\n"; // 1001101110
+```
+
 ### Map
 
 ##### Defination
@@ -540,6 +612,27 @@ delete [ ] arr2;
 //If we don't do this a memory leak will occur
 ```
 
+### Deque
+
+##### Definition
+A deque is a dynamic array whose size can be efficiently changed at both ends of the array. Like a vector, a deque provides the functions push_back and pop_back, but it also includes the functions push_front and pop_front which are not available in a vector.
+
+##### Usage
+
+```
+deque<int> d;
+d.push_back(5); // [5]
+d.push_back(2); // [5,2]
+d.push_front(3); // [3,5,2]
+d.pop_back(); // [3,5]
+d.pop_front(); // [5]
+```
+
+##### Note
+
+* Deque is slower than a vector
+* Adding and removing elements take **O(1)** time on average at both ends
+
 ### Strings
 
 ###### Functions
@@ -685,6 +778,9 @@ rand() % 10 + 1;
 
 ### Stack
 
+##### Definition
+A stack is a data structure that provides two O(1) time operations: adding an element to the top, and removing an element from the top. It is only possible to access the top element of a stack.
+
 ##### Declaration
 ```
 stack <int> s;
@@ -701,6 +797,91 @@ Swap: `stack1.swap(stack2)`
 
 ##### Difference between stack::emplace() and stack::push() function.
 While push() function inserts a copy of the value or the parameter passed to the function into the container at the top, the emplace() function constructs a new element as the value of the parameter and then adds it to the top of the container.
+
+### Queue
+
+##### Definition
+A queue also provides two O(1) time operations: adding an element to the end of the queue, and removing the first element in the queue. It is only possible to access the first and last element of a queue.
+
+##### Declaration
+```
+queue<int> q;
+```
+
+##### Operations
+Push O(1): `q.push(10)`
+Front : `q.fron()` //10
+Pop  O(1): `q.pop()`
+
+### Priority Queue
+
+##### Definition
+A priority queue maintains a set of elements. The supported operations are insertion and, depending on the type of the queue, retrieval and removal of either the minimum or maximum element. Insertion and removal take **O(logn)** time, and retrieval takes **O(1)** time.
+A priority queue is usually implemented using a heap structure that is much simpler than a balanced binary tree used in an ordered set.
+
+##### Declaration
+```
+priority_queue<int> q; //Default: Decreasing order
+```
+
+##### Operations
+Push: `q.push(3)`
+Top: `q.top()`
+Pop: `q.pop()`
+
+##### Hacks
+
+If we want to create a priority queue that supports finding and removing the
+smallest element, we can do it as follows:
+```
+priority_queue<int,vector<int>,greater<int>> q;
+```
+
+### Policy-based data structures
+The g++ compiler also supports some data structures that are not part of the C++
+standard library. Such structures are called policy-based data structures. To use
+these structures, the following lines must be added to the code:
+
+```
+#include <ext/pb_ds/assoc_container.hpp>
+using namespace __gnu_pbds;
+```
+
+After this, we can define a data structure indexed_set that is like set but can be
+indexed like an array. The definition for int values is as follows:
+```
+typedef tree<int,null_type,less<int>,rb_tree_tag,
+tree_order_statistics_node_update> indexed_set;
+```
+
+Now we can create a set as follows:
+```
+indexed_set s;
+s.insert(2);
+s.insert(3);
+s.insert(7);
+s.insert(9);
+```
+
+The speciality of this set is that we have access to the indices that the elements
+would have in a sorted array. The function find_by_order returns an iterator to
+the element at a given position:
+```
+auto x = s.find_by_order(2);
+cout << *x << "\n"; // 7
+```
+
+And the function order_of_key returns the position of a given element:
+```
+cout << s.order_of_key(7) << "\n"; // 2
+```
+If the element does not appear in the set, we get the position that the element
+would have in the set:
+```
+cout << s.order_of_key(6) << "\n"; // 2
+cout << s.order_of_key(8) << "\n"; // 3
+```
+Both the functions work in logarithmic time.
 
 ### Templates
 
