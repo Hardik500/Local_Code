@@ -1092,6 +1092,12 @@ denominator = (2.0^n^) x (5.0^0.5^)
 
 formula = (numerator1 - numerator2)/(denominator)
 
+##### Check if power of 2
+
+```
+n > 0 && ((n & (n-1)) == 0);
+```
+
 ### Imp Links
 
 * [CPP Cheat Sheet](https://github.com/gibsjose/cpp-cheat-sheet/)
