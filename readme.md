@@ -1091,3 +1091,8 @@ numerator2 = (1.0 - 5.0^0.5^)^n^
 denominator = (2.0^n^) x (5.0^0.5^)
 
 formula = (numerator1 - numerator2)/(denominator)
+
+### Imp Links
+
+* [CPP Cheat Sheet](https://github.com/gibsjose/cpp-cheat-sheet/)
+* [Complexity Cheat Sheet](https://www.bigocheatsheet.com/)
