@@ -43,6 +43,13 @@ class IntCell{
 }
 ```
 
+##### Usage
+
+```
+IntCell in;
+in.write(2);
+```
+
 ### Objects
 
 ##### Creation
