@@ -1076,6 +1076,12 @@ auto comp = [](vector<int> &a, vector<int> &b) {
 };
 ```
 
+##### Binary Search
+
+```
+binary_search(v.begin(), v.end(), number) //Returns true or false
+```
+
 ##### Arithmatic Progression
 
 (n numbers){a + ... + b} = (n( a + b ))/2
