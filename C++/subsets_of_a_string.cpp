@@ -50,6 +50,5 @@ int main()
     string str = "ABC";
     int n = str.length();
     // subSets(str, n);
-    subsetA(str, 0, n);
-    // subSetsB(str, n);
+    subSetsB(str, n);
 }
