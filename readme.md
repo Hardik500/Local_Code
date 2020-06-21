@@ -1111,6 +1111,16 @@ formula = (numerator1 - numerator2)/(denominator)
 n > 0 && ((n & (n-1)) == 0);
 ```
 
+##### Check if a number has any odd divisors or not
+
+If a number is of the form 2^x^, then it has no odd divisors
+
+```
+if((n & (n — 1)) == 0)
+```
+
+If a number is divisible by 4, then it has a odd divisor which when divides it will make it of the form 2^x^
+
 ### Imp Links
 
 * [CPP Cheat Sheet](https://github.com/gibsjose/cpp-cheat-sheet/)
