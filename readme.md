@@ -251,6 +251,8 @@ otherwise
 7. `const Object & front( ) const`: returns the object at the front of the list (a mutator that returns a reference is also provided).
 8. `void push_front( const Object & x )`: adds x to the front of the list.
 9. `void pop_front( )`: removes the object at the front of the list
+10. `advance(itr, count)`: advance the position of the iterator by count
+11. `void erase(itr)` : Erase the content from the linked list
 
 ### Iterators
 
