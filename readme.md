@@ -514,6 +514,15 @@ for(char y : x){
 cout<<cnt['h'];
 ```
 
+##### Get a random variable in a map
+
+```
+auto it = s.begin();
+advance(it, rand() % s.size());
+int random_key = it->first;
+return random_key;
+```
+
 ##### Functions available
 
 * `begin()` – Returns an iterator to the first element in the map
