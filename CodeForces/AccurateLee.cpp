@@ -1,48 +1,37 @@
-#include <bits/stdc++.h>
-
+#include <iostream>
+#include <string>
+ 
 using namespace std;
-
-int main()
-{
+ 
+int main(){
+    ios::sync_with_stdio(0);
+    cin.tie(0);
+    cout.tie(0);
     int t;
     cin >> t;
-    while (t--)
-    {
-        int c, index;
-        string v;
-        cin >> c >> v;
-
-        for (int i = c - 1; i >= 0; i--)
-        {
-            if (v[i] == '0')
-            {
-                index = i;
-                break;
-            }
+    while(t--){
+        int n;
+        cin >> n;
+        string s;
+        cin >> s;
+        int sw = 1;
+        for(int i = 1; i < s.size(); i++){
+            if(s[i] < s[i-1])sw = 0;
         }
-
-        int done = 0;
-
-        for (int i = 0; i <= index; i++)
-        {
-            if (v[i] == '1')
-            {
-                done = 1;
-                break;
-            }
+        if(sw){
+            cout << s << '\n';
+            continue;
         }
-
-        if (done)
-        {
-            for (int i = index; i < c; i++)
-            {
-                cout << v[i];
-            }
-            cout << "\n";
+        string ans;
+        for(int i = 0; i < s.size(); i++){
+            if(s[i] == '1')break;
+            ans.push_back('0');
         }
-        else
-        {
-            cout << v << "\n";
+        ans.push_back('0');
+        for(int i = s.size()-1; i >= 0; i--){
+            if(s[i] == '0')break;
+            ans.push_back('1');
         }
+        cout << ans << '\n';
     }
 }
