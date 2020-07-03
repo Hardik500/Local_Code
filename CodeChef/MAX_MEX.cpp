@@ -6,43 +6,29 @@ int main()
 {
     int t;
     cin >> t;
+    int n, m;
     while (t--)
     {
-        int n, m;
         cin >> n >> m;
-        vector<int> arr(n);
-        vector<int>::reverse_iterator itr;
-        for (int &x : arr)
-            cin >> x;
-        sort(arr.begin(), arr.end());
-        vector<int> answer;
-        int cal = 1;
-        int count = 0;
-        int flag = 1;
 
-        for (itr = arr.rbegin(); itr != arr.rend(); ++itr)
+        set<int> st;
+        int ans = 0, x;
+        for (int i = 0; i < n; ++i)
         {
-            if (*itr > m)
-                ++count;
-            else if (m - *itr == cal)
-            {
-                ++count;
-                ++cal;
-            }
-            else if (m - *itr == 0)
-                continue;
-            else if (*itr == *(itr - 1))
-                ++count;
-            else
-            {
-                flag = 0;
-                break;
-            };
+            cin >> x;
+            if (x != m)
+                st.insert(x), ++ans;
         }
-        if (flag && cal == m)
-            cout << count << "\n";
-        else
-            cout << "-1\n";
+
+        int mex = 1;
+
+        //Gets the minimum number which is not in the set
+        while (st.count(mex))
+            ++mex;
+
+        if (mex != m)
+            ans = -1;
+        cout << ans << "\n";
     }
 
     return 0;
