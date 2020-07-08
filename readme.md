@@ -1087,6 +1087,14 @@ auto comp = [](vector<int> &a, vector<int> &b) {
 };
 ```
 
+##### Sort a vector of pairs (by comparing their second value)
+```
+bool pro(const pair<int, int> &x, const pair<int, int> &y)
+{
+    return x.second > y.second;
+}
+```
+
 ##### Binary Search
 
 ```
