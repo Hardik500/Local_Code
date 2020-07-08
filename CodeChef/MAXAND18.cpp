@@ -1,51 +1,66 @@
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
+
+#define IOS                  \
+    ios::sync_with_stdio(0); \
+    cin.tie(0);              \
+    cout.tie(0);
+
+#define int long long
+
 using namespace std;
-#define FIO ios_base::sync_with_stdio(false);cin.tie(0);cout.tie(0)
-#define mod 1000000007
-#define test ll tx; cin>>tx; while(tx--)
-typedef long long int ll;
-int main() {
-	FIO;
-	ll power[31];
-	ll i;
-	power[0]=1;
-	for(i=1;i<=30;i++){
-	    power[i]=2*power[i-1];
-	}
-	test{
-	    ll n,k,x,i,j;
-	    cin>>n>>k;
-	    ll a[n];
-	    for(i=0;i<n;i++){
-	        cin>>a[i];
-	    }
-	    ll count[31];
-	    for(i=0;i<31;i++){
-	        count[i]=0;
-	    }
-	    for(i=0;i<n;i++){
-	        x=a[i];
-	        j=0;
-	        while(x!=0){
-	            if(x%2==1){
-	                count[j]++;
-	            }
-	            x/=2;
-	            j++;
-	        }
-	    }
-	    vector<pair<ll,ll>>res;
-	    x=1;
-	    for(i=0;i<=30;i++){
-	        res.push_back(make_pair(count[i]*x,50-i));
-	        x*=2;
-	    }
-	    sort(res.begin(),res.end());
-	    ll ans=0;
-	    for(i=30;i>30-k;i--){
-	        ans+=power[50-res[i].second];
-	    }
-	    cout<<ans<<endl;
-	}
-	return 0;
+
+bool pro(const pair<int, int> &x, const pair<int, int> &y)
+{
+    if (x.first == y.first)
+        if (x.second < y.second)
+            return true;
+        else
+            return false;
+    else if (x.first > y.first)
+        return true;
+    else
+        return false;
+}
+
+void solve()
+{
+    int n, k, x;
+    cin >> n >> k;
+    vector<pair<int, int>> b(30);
+
+    for (int i = 0; i < 30; i++)
+    {
+        b[i].first = 0;
+        b[i].second = i;
+    }
+
+    for (int i = 0; i < n; i++)
+    {
+        cin >> x;
+
+        for (int j = 0; j < 30; j++)
+        {
+            if (x & (1 << j))
+                b[j].first += 1 << j;
+        }
+    }
+
+    sort(b.begin(), b.end(), pro);
+
+    int ans = 0;
+
+    for (int i = 0; i < k; i++)
+        ans += 1 << b[i].second;
+
+    cout << ans << "\n";
+}
+
+int32_t main()
+{
+    IOS;
+    int t;
+    cin >> t;
+
+    while (t--)
+        solve();
 }
