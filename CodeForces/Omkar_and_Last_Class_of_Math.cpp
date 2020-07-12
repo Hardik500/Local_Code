@@ -1,53 +1,36 @@
-#include <bits/stdc++.h>
-
+#include<bits/stdc++.h>
+ 
 using namespace std;
-
-void solve()
+ 
+typedef long long ll;
+#define int ll
+typedef long double ld;
+ 
+typedef pair<int,int> pii;
+#define x first
+#define y second
+ 
+int solve(int n)
 {
-    int n;
-    cin >> n;
-
-    bool found = false;
-    int count = 1, i;
-
-    if (n % 2 == 0)
-    {
-        cout << (n / 2) << " " << (n / 2) << "\n";
-    }
-    else
-    {
-        for (i = 3; i < n; i += 2)
-        {
-            if (n % i == 0)
-            {
-                found = true;
-                break;
-            }
-            else
-            {
-                found = false;
-            }
-
-            count += 1;
-        }
-
-        if (found)
-        {
-            cout << count * (n / i) << " " << (count + 1) * (n / i) << "\n";
-        }
-        else
-        {
-            cout << 1 << " " << (n - 1) << "\n";
-        }
-    }
+    for(int d=2;d*d<=n;d++)
+        if(n%d==0)
+            return n/d;
+    return n/n;
 }
-
-int main()
+ 
+signed main()
 {
+    ios_base::sync_with_stdio(0);
+    cin.tie(0);
+    cout.tie(0);
+ 
     int t;
-    cin >> t;
-    while (t--)
+    cin>>t;
+    while(t--)
     {
-        solve();
+        int n;
+        cin>>n;
+        int x=solve(n);
+        cout<<x<<" "<<n-x<<"\n";
     }
 }
