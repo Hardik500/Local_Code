@@ -11,8 +11,9 @@ using namespace std;
 
 void solve()
 {
-    int N, x, a;
-    cin >> N >> x;
+    int N, X, x, a;
+    cin >> N >> X;
+    x = X;
 
     multiset<int> arr;
 
@@ -22,17 +23,9 @@ void solve()
         arr.insert(a);
     }
 
-    int noOfDays = 0, temp = 0, smallerCountries = 0;
-
-    for (auto it = arr.begin(); it != arr.end(); ++it)
-    {
-        if (*it < x)
-            smallerCountries += 1;
-    }
+    int noOfDays = 0;
 
     auto it = arr.begin();
-
-    advance(it, smallerCountries);
 
     while (it != arr.end())
     {
@@ -42,18 +35,11 @@ void solve()
             noOfDays += 1;
         }
 
-        temp = x - *it;
-        
-        if(temp)
-            x = *it;
-
-        noOfDays += 1;
-        x *= 2;
+        x = max(X, 2 * (*it)); // keep X ( the one from input ) unchanged.
+        noOfDays++;
 
         advance(it, 1);
     }
-
-    noOfDays += smallerCountries;
 
     cout << noOfDays << "\n";
 }
