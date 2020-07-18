@@ -1140,6 +1140,13 @@ if((n & (n — 1)) == 0)
 
 If a number is divisible by 4, then it has a odd divisor which when divides it will make it of the form 2^x^
 
+##### Count the number of copies of a value in a sequence.
+
+```
+string s = "hardik";
+int i = count(s.begin(), s.end(), 'i');
+```
+
 ### Imp Links
 
 * [CPP Cheat Sheet](https://github.com/gibsjose/cpp-cheat-sheet/)
