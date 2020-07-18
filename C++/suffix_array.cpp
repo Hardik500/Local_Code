@@ -6,11 +6,11 @@ using namespace std;
 
 void generate_suffixes(string s, int size)
 {
-    vector<int> p(size), c(size);
-
-    vector<pair<char, int>> a(size);
+    vector<int> p(size) /* order of the strings */, c(size) /* Equivalence classes */;
     {
         //k == 0;
+        vector<pair<char, int>> a(size); //Store character and position
+
         for (int i = 0; i < size; i++)
             a[i] = {s[i], i};
 
@@ -38,7 +38,7 @@ void generate_suffixes(string s, int size)
         vector<pair<pair<int, int>, int>> a(size);
 
         for (int i = 0; i < size; i++)
-            a[i] = {{c[i], c[(i + (2 << k)) % size]}, i};
+            a[i] = {{c[i], c[(i + (1 << k)) % size]}, i};
 
         sort(a.begin(), a.end());
 
