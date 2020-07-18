@@ -2,40 +2,73 @@
 
 using namespace std;
 
-
 //Lexcographic Order
 
-//Naive Method
 void generate_suffixes(string s, int size)
 {
-    vector<string> suffixes;
-    vector<int> suffixArray;
+    vector<int> p(size), c(size);
 
-    int i = size - 1;
-
-    suffixes.push_back("$" + s);
-
-    for (int len = 0; len < size; len++)
+    vector<pair<char, int>> a(size);
     {
-        suffixes.push_back(s.substr(len, i + 1) + "$" + s.substr(0, len));
-        i += 1;
+        //k == 0;
+        for (int i = 0; i < size; i++)
+            a[i] = {s[i], i};
+
+        sort(a.begin(), a.end());
+
+        for (int i = 0; i < size; i++)
+            p[i] = a[i].second;
+
+        c[p[0]] = 0;
+
+        for (int i = 1; i < size; i++)
+        {
+            if (a[i].first == a[i - 1].first)
+                c[p[i]] = c[p[i - 1]];
+            else
+                c[p[i]] = c[p[i - 1]] + 1;
+        }
     }
 
-    sort(suffixes.begin(), suffixes.end());
+    int k = 0;
 
-    for (auto x : suffixes)
-        suffixArray.push_back(size - x.find("$"));
-    
-    for (auto x : suffixArray)
-        cout<<x<<" ";
+    while ((1 << k) < size)
+    {
+        //k -> k+1
+        vector<pair<pair<int, int>, int>> a(size);
 
+        for (int i = 0; i < size; i++)
+            a[i] = {{c[i], c[(i + (2 << k)) % size]}, i};
+
+        sort(a.begin(), a.end());
+
+        for (int i = 0; i < size; i++)
+            p[i] = a[i].second;
+
+        c[p[0]] = 0;
+
+        for (int i = 1; i < size; i++)
+        {
+            if (a[i].first == a[i - 1].first)
+                c[p[i]] = c[p[i - 1]];
+            else
+                c[p[i]] = c[p[i - 1]] + 1;
+        }
+
+        k++;
+    }
+
+    for (int i = 0; i < size; i++)
+        cout<<p[i]<<" ";
+    cout<<"\n";
 }
 
 int main()
 {
     string s;
     int sizeOfString;
-    cin>>s;
+    cin >> s;
+    s += "$";
     sizeOfString = s.size();
     generate_suffixes(s, sizeOfString);
 }
