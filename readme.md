@@ -1147,6 +1147,13 @@ string s = "hardik";
 int i = count(s.begin(), s.end(), 'i');
 ```
 
+##### Get the next character in alphabet
+
+```
+char c = 'a';
+c+ 1; //'b'
+````
+
 ### Imp Links
 
 * [CPP Cheat Sheet](https://github.com/gibsjose/cpp-cheat-sheet/)
