@@ -8,19 +8,14 @@ public:
     int numWaterBottles(int numBottles, int numExchange)
     {
         int sum = numBottles, fullBottle = numBottles, extraBottle = 0;
-        if (numBottles >= numExchange)
+        while (fullBottle >= numExchange)
         {
-            while (fullBottle >= numExchange)
-            {
-                extraBottle = fullBottle % numExchange;
-                fullBottle = fullBottle / numExchange;                
-                sum += fullBottle;
+            extraBottle = fullBottle % numExchange;
+            fullBottle = fullBottle / numExchange;
+            sum += fullBottle;
 
-                fullBottle += extraBottle;
-            }
+            fullBottle += extraBottle;
         }
-        else
-            sum = numBottles;
 
         return sum;
     }
