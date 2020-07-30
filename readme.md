@@ -991,6 +991,24 @@ Operator overloading allows us to define the meaning of a built-in operator.
 
 ### Hacks
 
+##### Assign default values to 2-D array
+
+```
+memset(table, 0, sizeof(table));
+```
+
+##### Convert String to int
+
+```
+stoi(string)
+```
+
+##### Convert int to string
+
+```
+to_string(int)
+```
+
 ##### Make I/O more efficient
 
 ```
