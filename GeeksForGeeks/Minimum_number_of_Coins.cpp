@@ -71,5 +71,5 @@ int main()
     cin >> t;
 
     while (t--)
-        solve();
+        change(9);
 }
