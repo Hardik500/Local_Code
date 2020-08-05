@@ -32,44 +32,64 @@ void solve()
     cout << "\n";
 }
 
-//DP soln
-int coins[] = {1, 2, 5, 10, 20, 50, 100, 200, 500, 2000};
+//Recursion Solution (Right but exponential soln)
+int solut = INT_MAX;
 
-void change(int n)
+int recursion(int coins[], int n, int value, int count = 0)
 {
-    int i, dp[10][n + 1], j;
-    for (i = 0; i <= n; i++)
-        dp[0][i] = i;
+    if (value == 0)
+        return count;
 
-    for (i = 1; i < 10; i++)
+    for (int i = 0; i < n; i++)
     {
-        for (j = 0; j <= n; j++)
+        if (coins[i] <= value)
         {
-            if (j >= coins[i])
-                dp[i][j] = min(dp[i - 1][j], dp[i][j - coins[i]] + 1);
+            int temp = recursion(coins, n, value - coins[i], count + 1);
+
+            if (count == 0)
+                solut = min(solut, temp);
             else
-                dp[i][j] = dp[i - 1][j];
+                return temp;
         }
     }
-    i = 9;
-    j = n;
-    while (i >= 0 && j > 0)
+
+    return count;
+}
+
+//DP soln
+
+int change_dp(int coins[], int n, int v)
+{
+    int dp[v + 1];
+
+    dp[0] = 0;
+
+    for (int i = 1; i <= v; i++)
+        dp[i] = INT_MAX;
+
+    for (int i = 1; i <= v; i++)
     {
-        if (dp[i][j] == dp[i - 1][j])
-            i = i - 1;
-        else
+        for (int j = 0; j < n; j++)
         {
-            cout << coins[i] << " ";
-            j = j - coins[i];
+            if (coins[j] <= i)
+            {
+                int res = dp[i - coins[j]];
+
+                if (res != INT_MAX && res + 1 < dp[i])
+                    dp[i] = res + 1;
+            }
         }
     }
+
+    return dp[v];
 }
 
 int main()
 {
-    int t;
-    cin >> t;
+    int coins[] = {4, 3, 1};
 
-    while (t--)
-        change(9);
+    // recursion(coins, 3, 9);
+    // cout << solut << "\n";
+
+    cout << change_dp(coins, 3, 6);
 }
