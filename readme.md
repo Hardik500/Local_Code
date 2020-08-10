@@ -991,6 +991,14 @@ Operator overloading allows us to define the meaning of a built-in operator.
 
 ### Hacks
 
+##### If we want to equalize two arrays to their minimum values (in min no of moves)
+
+Take the minimum of both arrays (i.e. min of a = mna and min of b = mnb)
+
+```
+ans += max(a[i] - mna, b[i] - mnb);
+```
+
 ##### Assign default values to 2-D array
 
 ```
