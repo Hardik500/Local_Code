@@ -991,6 +991,18 @@ Operator overloading allows us to define the meaning of a built-in operator.
 
 ### Hacks
 
+##### Split a string
+
+```
+vector<int> va;
+string sa;
+
+stringstream ssa(a);
+
+while (getline(ssa, sa, '.'))
+    va.push_back(stoi(sa));
+```
+
 ##### If we want to equalize two arrays to their minimum values (in min no of moves)
 
 Take the minimum of both arrays (i.e. min of a = mna and min of b = mnb)
