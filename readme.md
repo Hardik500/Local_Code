@@ -991,6 +991,16 @@ Operator overloading allows us to define the meaning of a built-in operator.
 
 ### Hacks
 
+##### Round off to 2 decimal places
+
+```
+v = round(v * 100) / 100
+```
+
+##### Number is a fibonacci?
+
+A number is Fibonacci if and only if one or both of (5*n^2^ + 4) or (5*n^2^ – 4) is a perfect square 
+
 ##### Split a string
 
 ```
