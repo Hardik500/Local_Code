@@ -12,7 +12,7 @@ public:
 
         for (int i = 0; i < size; i++)
         {
-            if (nums[i] > c && (nums[i] != a && nums[i] != b && nums[i] != c))
+            if (nums[i] > c && (nums[i] != a && nums[i] != b))
             {
                 c = nums[i];
 
@@ -37,5 +37,5 @@ int main()
 {
     Solution s;
 
-    cout << s.thirdMax({1,1, 2});
+    cout << s.thirdMax({1,3, 2, 5, 4, 10, 9, 11});
 }
