@@ -55,8 +55,6 @@ void printLevelTraversal(Node *root)
 
         if (y->right != NULL)
             s.push(y->right);
-
-        swap = !swap;
     }
 }
 
